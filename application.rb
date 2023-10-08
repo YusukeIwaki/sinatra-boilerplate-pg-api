@@ -9,6 +9,10 @@ require 'sinatra/base'
 require 'sinatra/jbuilder'
 
 class Application < Sinatra::Base
+  use ApplicationLogger
+  helpers ApplicationLogger::Helper
+  set :show_exceptions, false
+
   get '/customers' do
     @customers = Customer.all
     jbuilder :"customers/index.json"
